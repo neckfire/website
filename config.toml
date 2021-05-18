@@ -1,0 +1,5 @@
+baseURL = "https://nfteam.glitch.me/"
+languageCode = "en-us"
+title = "NeckFire Team Official Website"
+theme = "hugo-theme-dimension-master"
+
