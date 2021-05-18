@@ -1,4 +1,4 @@
-baseURL = "https://nfteam.glitch.me/"
+baseURL = "https://nfteam.netlify.com/"
 languageCode = "en-us"
 title = "NeckFire Team Official Website"
 theme = "hugo-theme-dimension-master"
