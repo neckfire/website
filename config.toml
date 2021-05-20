@@ -3,3 +3,11 @@ languageCode = "en-us"
 title = "NeckFire Team Official Website"
 theme = "hugo-theme-dimension-master"
 
+[[params.social]]
+  name = "github"
+  url = "https://github.com/neckfire"
+
+[[params.social]]
+  name = "discord"
+  url = "https://discord.gg/AzdjSztF4C"
+
