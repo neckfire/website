@@ -22,6 +22,6 @@ Inspiration:
 
 For over 10 years Coterie Craft has used ExtraNoise's Quandary Texture Pack as a base. Since then Coterie Craft was given full rights to the author's work. Coterie Craft has evolved into a unique package of its own with the help of our team members, Ganlolde and karst who continued the pack around 2013-2015 when I was busy as well as myself for expanding the pack to future updates and an HD release.
 
-https://www.curseforge.com/minecraft/texture-packs/coterie-craft-16x/download/3043165
-https://www.curseforge.com/minecraft/texture-packs/coterie-craft-16x/download/2857528
-https://www.curseforge.com/minecraft/texture-packs/coterie-craft-16x/download/2816588
+- https://www.curseforge.com/minecraft/texture-packs/coterie-craft-16x/download/3043165
+- https://www.curseforge.com/minecraft/texture-packs/coterie-craft-16x/download/2857528
+- https://www.curseforge.com/minecraft/texture-packs/coterie-craft-16x/download/2816588
