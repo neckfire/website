@@ -2,4 +2,4 @@
 title: drone
 date: "18 july 2021"
 ---
-[![Alt text](./djvi.avi)](./djvi.avi)
+[![mountain top](./djvi.avi)](./djvi.avi)
