@@ -2,4 +2,10 @@
 title: drone
 date: "18 july 2021"
 ---
-{{< video src="./djvi.avi" controls="no" >}}
+{{< rawhtml >}} 
+
+<video width=100% controls autoplay>
+    <source src="./djvi.avi">
+</video>
+
+{{< /rawhtml >}}
