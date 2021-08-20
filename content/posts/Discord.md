@@ -1,5 +1,5 @@
 ---
-title: "See our discord server !"
+title: "our discord server !"
 date: "22 December 2020"
 ---
 https://discord.gg/AzdjSztF4C 
