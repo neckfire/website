@@ -2,4 +2,4 @@
 title: drone
 date: "18 july 2021"
 ---
-![Example video](./djvi.avi)
+{{< video library="1" src="./djvi.avi" controls="no" >}}
