@@ -1,5 +1,5 @@
 ---
-title: "Our Team"
+title: "Team"
 date: "22 April 2021"
 ---
 What is the neckfire team?
