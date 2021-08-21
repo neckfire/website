@@ -3,6 +3,16 @@ title: "New Partner"
 date: "15 December 2020"
 ---
 ---
+29 may 2021
+---
+we are in partnership with KHRØNE, an artist who makes electro house music !
+you can follow him on instagram !
+https://www.instagram.com/khrone.music/?hl=fr
+https://fanlink.to/khrone
+
+
+
+---
 25 april 2021
 ---
 After many problems of understanding, which cut the NFT into two teams, a bond is rebuilt between Neckfire (NFT) and Atomiseur69 (Ardor).
