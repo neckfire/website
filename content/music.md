@@ -11,3 +11,5 @@ Share your music to the NFT, and we post on our youtube / soundcloud channel !
 
 you just need to upload your song or your music clip on https://mega.nz and share to us the link on the discord !
 
+we are in partnership with khrØne, an artist who makes electro house music. follow him on instagram !
+https://www.instagram.com/khrone.music/?hl=fr
