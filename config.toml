@@ -11,3 +11,7 @@ theme = "hugo-theme-dimension-master"
   name = "discord"
   url = "https://discord.gg/AzdjSztF4C"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
