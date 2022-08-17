@@ -18,7 +18,7 @@ Quelques clichés par [thefroger](https://nfteam.netlify.app/team/#thefroger)
   var playerElement = document.getElementById("player-wrapper");
 
   var player = new Clappr.Player({
-    source: ./md.mp4,
+    source: "./md.mp4",
     mute: true,
     height: 360,
     width: 640
