@@ -2,4 +2,5 @@
 title: drone
 date: "18 july 2021"
 ---
-[![mountain top](./mt.avi)](./mt.avi)
+Quelques clichés par [thefroger](https://nfteam.netlify.app/team/#thefroger)
+[montagne haute loire](./mt.avi)
