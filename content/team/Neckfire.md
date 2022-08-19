@@ -7,6 +7,6 @@ with Alber, he continued to create small programs in batch then in bash on compu
 Today he did it, although very limited, his system works, it's ARPON OS.
 today, the NeckFire Team is back, with more and more partners, more ambition and more knowledge, they are here, and intend to progress!
 
-Neckfire's key phrase is: "never fear the fall"
+Neckfire's moto is: "never fear the fall"
 ![Example image](https://zupimages.net/up/21/18/tjke.jpg)
 
