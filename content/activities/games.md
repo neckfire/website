@@ -2,12 +2,10 @@
 title: "gaming"
 date: "06 april 2021"
 ---
-we play some games, like Minecraft, Subnautica, World of Tanks, CS:GO, Rocket League, Splitgate and more !
- 
- Neckfire is a fan of Sonic the Hedgehog,
- TheFroger is fan of tanks
+We play some games, like Minecraft, Subnautica, World of Tanks, CS:GO, Rocket League, Splitgate and more !
 
-so come to play with us !
+So come to play with us !
 
-did you know we are making a game ?
-to test the demo, click [here](https://nfteam.netlify.app/nftgame/_index.html)
+Did you know we are making a game ?
+To test the demo, click [here](https://nfteam.netlify.app/nftgame/_index.html)
+INFO : This game will be replaced by our true game, this is actually the test project for understanding basis of godot.
