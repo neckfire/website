@@ -9,3 +9,4 @@ So come to play with us !
 Did you know we are making a game ?
 To test the demo, click [here](https://nfteam.netlify.app/nftgame/_index.html)
 INFO : This game will be replaced by our true game, this is actually the test project for understanding basis of godot.
+![](https://www.mondespersistants.com/wp-content/uploads/2022/01/Splitgate-fixe-une-date-pour-sa-premiere-saison-elle.jpg)
