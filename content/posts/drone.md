@@ -1,6 +1,8 @@
 ---
-title: drone
-date: "18 july 2021"
+title: Drone
 ---
-Quelques clichés par [thefroger](https://nfteam.netlify.app/team/#thefroger)
-- <a href="./mt.mp4">pic du lisieux</a>
+A little FPV drone simulation builded by neckfire, project in development.
+[Test it here.](https://nfteam.netlify.app/drone/)
+
+Here there are some drone movies made by TheFroger
+![top of the Lizieux](https://nfteam.netlify.app/posts/mt.mp4)
