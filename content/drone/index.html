@@ -1,248 +1,125 @@
-<!DOCTYPE html>
-<html xmlns='http://www.w3.org/1999/xhtml' lang='' xml:lang=''>
-<head>
-	<meta charset='utf-8' />
-	<meta name='viewport' content='width=device-width, user-scalable=no' />
-	<title>Drone</title>
-	<style type='text/css'>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>NECKFIRE TEAM</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
 
-		body {
-			touch-action: none;
-			margin: 0;
-			border: 0 none;
-			padding: 0;
-			text-align: center;
-			background-color: black;
-		}
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
 
-		#canvas {
-			display: block;
-			margin: 0;
-			color: white;
-		}
+				<!-- Intro -->
+					<div id="intro">
+						<h1>NECKFIRE<br />
+						TEAM</h1>
+						<p></p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continuer</a></li>
+						</ul>
+					</div>
 
-		#canvas:focus {
-			outline: none;
-		}
+				<!-- Header -->
+					<header id="header">
+						<a href="home.html" class="logo">NECKFIRE TEAM</a>
+					</header>
 
-		.godot {
-			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-			color: #e0e0e0;
-			background-color: #3b3943;
-			background-image: linear-gradient(to bottom, #403e48, #35333c);
-			border: 1px solid #45434e;
-			box-shadow: 0 0 1px 1px #2f2d35;
-		}
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="home.html">Who we are</a></li>
+							<li><a href="https://nfteam.netlify.app">NFT WEBSITE</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="htps://github.com/Neckfire" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
 
+				<!-- Main -->
+					<div id="main">
 
-		/* Status display
-		 * ============== */
+						<!-- Featured Post -->
+							<article class="post featured">
+								<header class="major">
+									<span class="date">December, 2022</span>
+									<h2><a href="#">WHO WE<br />
+									ARE</a></h2>
+									<p>The Neckfire team is a long-prepared enterprise that aims to bring together any experts or apprentices in a friendly environment where everyone will develop not only their knowledge, but their skills in passing on knowledge to allow everyone to access the world of computing that is still too little known, or too superficially. We wish to reconcile open source and owners, large companies and small ones, to open the knowledge to the world in order to enter an era of cooperation and not of competition, so that this set can finally innovate quickly and at lower cost. </br> <h3>how we wants to do that ?</h3></br>We wants to create a new shape of enterprise, organized to have one head group that manage all the others, and all these groups make specific domains. These group are a workspace for two kind of people : </br>- employee</br>- students</br>We wants also to make our entreprise a school place, to train new employee, or students, we wants to share our knowledges, our research, and break the walls between other businesses.</br>For the moment, we have only 2 objectives, create the Neckfire Team, and start building ours projects, and continue with <a href="https://nfteam.netlify.app/arpon/home.html">ARPON OS</a></p>
+								<img alt="" border="0" src="images/qrcode.png" width="1" height="1" />
+								
+							</article>
 
-		#status {
-			position: absolute;
-			left: 0;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			/* don't consume click events - make children visible explicitly */
-			visibility: hidden;
-		}
+						<!-- Posts -->
+						<!--	<section class="posts">
+								<article>
+									<header>
+										<span class="date">April 17, 2022</span>
+										<h2><a href="https://nfteam.netlify.app/arpon/home.html">ARPON OS<br />
+										 PROJECT</a></h2>
+									</header>
+									<a href="https://nfteam.netlify.app/arpon/home.html" class="image fit"><img src="https://nfteam.netlify.app/arpon/images/arpon.png" alt="" /></a>
+									<p>Ici vous pouvez retrouver plus d'information a propos de Arpon OS</p>
+									<ul class="actions special">
+										<li><a href="https://nfteam.netlify.app/arpon/home.html" class="button">view</a></li>
+									</ul>
+								</article>
+								<article>
+									<header>
+										<span class="date">November, 2022</span>
+										<h2><a href="doc/cv.pdf">MON CV<br />
+										 (PDF)</a></h2>
+									</header>
+									<a href="doc/cv.pdf" class="image fit"><img src="https://nfteam.netlify.app/team/neckfire/images/cv.png" alt="" /></a>
+									<p>Voici mon CV, je suis a la recherche d'emploi en tant qu'alternant développeur.</p>
+									<ul class="actions special">
+										<li><a href="doc/cv.pdf" class="button">CV</a></li>
+									</ul>
+								</article>
+									
+							</section>
+						-->
+						<!-- Footer -->
+							
 
-		#status-progress {
-			width: 366px;
-			height: 7px;
-			background-color: #38363A;
-			border: 1px solid #444246;
-			padding: 1px;
-			box-shadow: 0 0 2px 1px #1B1C22;
-			border-radius: 2px;
-			visibility: visible;
-		}
+					</div>
 
-		@media only screen and (orientation:portrait) {
-			#status-progress {
-				width: 61.8%;
-			}
-		}
+				<!-- Footer -->
+					<footer id="footer">
 
-		#status-progress-inner {
-			height: 100%;
-			width: 0;
-			box-sizing: border-box;
-			transition: width 0.5s linear;
-			background-color: #202020;
-			border: 1px solid #222223;
-			box-shadow: 0 0 1px 1px #27282E;
-			border-radius: 3px;
-		}
+						<section class="split contact">
 
-		#status-indeterminate {
-			height: 42px;
-			visibility: visible;
-			position: relative;
-		}
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">neckfire.gaming@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.linkedin.com/in/marc-garnier-de-boisgrollier-5a6893258/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="htps://github.com/Neckfire" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
 
-		#status-indeterminate > div {
-			width: 4.5px;
-			height: 0;
-			border-style: solid;
-			border-width: 9px 3px 0 3px;
-			border-color: #2b2b2b transparent transparent transparent;
-			transform-origin: center 21px;
-			position: absolute;
-		}
+			</div>
 
-		#status-indeterminate > div:nth-child(1) { transform: rotate( 22.5deg); }
-		#status-indeterminate > div:nth-child(2) { transform: rotate( 67.5deg); }
-		#status-indeterminate > div:nth-child(3) { transform: rotate(112.5deg); }
-		#status-indeterminate > div:nth-child(4) { transform: rotate(157.5deg); }
-		#status-indeterminate > div:nth-child(5) { transform: rotate(202.5deg); }
-		#status-indeterminate > div:nth-child(6) { transform: rotate(247.5deg); }
-		#status-indeterminate > div:nth-child(7) { transform: rotate(292.5deg); }
-		#status-indeterminate > div:nth-child(8) { transform: rotate(337.5deg); }
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-		#status-notice {
-			margin: 0 100px;
-			line-height: 1.3;
-			visibility: visible;
-			padding: 4px 6px;
-			visibility: visible;
-		}
-	</style>
-<link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
-<link rel='apple-touch-icon' href='index.apple-touch-icon.png'/>
-<title>drone example by neckfire</title>
-</head>
-<body>
-	<canvas id='canvas'>
-		HTML5 canvas appears to be unsupported in the current browser.<br />
-		Please try updating or use a different browser.
-	</canvas>
-	<div id='status'>
-		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
-		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-		<div id='status-notice' class='godot' style='display: none;'></div>
-	</div>
-
-	<script type='text/javascript' src='index.js'></script>
-	<script type='text/javascript'>//<![CDATA[
-
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":41408752,"index.wasm":13789463},"focusCanvas":true,"gdnativeLibs":[]};
-		var engine = new Engine(GODOT_CONFIG);
-
-		(function() {
-			const INDETERMINATE_STATUS_STEP_MS = 100;
-			var statusProgress = document.getElementById('status-progress');
-			var statusProgressInner = document.getElementById('status-progress-inner');
-			var statusIndeterminate = document.getElementById('status-indeterminate');
-			var statusNotice = document.getElementById('status-notice');
-
-			var initializing = true;
-			var statusMode = 'hidden';
-
-			var animationCallbacks = [];
-			function animate(time) {
-				animationCallbacks.forEach(callback => callback(time));
-				requestAnimationFrame(animate);
-			}
-			requestAnimationFrame(animate);
-
-			function setStatusMode(mode) {
-
-				if (statusMode === mode || !initializing)
-					return;
-				[statusProgress, statusIndeterminate, statusNotice].forEach(elem => {
-					elem.style.display = 'none';
-				});
-				animationCallbacks = animationCallbacks.filter(function(value) {
-					return (value != animateStatusIndeterminate);
-				});
-				switch (mode) {
-					case 'progress':
-						statusProgress.style.display = 'block';
-						break;
-					case 'indeterminate':
-						statusIndeterminate.style.display = 'block';
-						animationCallbacks.push(animateStatusIndeterminate);
-						break;
-					case 'notice':
-						statusNotice.style.display = 'block';
-						break;
-					case 'hidden':
-						break;
-					default:
-						throw new Error('Invalid status mode');
-				}
-				statusMode = mode;
-			}
-
-			function animateStatusIndeterminate(ms) {
-				var i = Math.floor(ms / INDETERMINATE_STATUS_STEP_MS % 8);
-				if (statusIndeterminate.children[i].style.borderTopColor == '') {
-					Array.prototype.slice.call(statusIndeterminate.children).forEach(child => {
-						child.style.borderTopColor = '';
-					});
-					statusIndeterminate.children[i].style.borderTopColor = '#dfdfdf';
-				}
-			}
-
-			function setStatusNotice(text) {
-				while (statusNotice.lastChild) {
-					statusNotice.removeChild(statusNotice.lastChild);
-				}
-				var lines = text.split('\n');
-				lines.forEach((line) => {
-					statusNotice.appendChild(document.createTextNode(line));
-					statusNotice.appendChild(document.createElement('br'));
-				});
-			};
-
-			function displayFailureNotice(err) {
-				var msg = err.message || err;
-				console.error(msg);
-				setStatusNotice(msg);
-				setStatusMode('notice');
-				initializing = false;
-			};
-
-			if (!Engine.isWebGLAvailable()) {
-				displayFailureNotice('WebGL not available');
-			} else {
-				setStatusMode('indeterminate');
-				engine.startGame({
-					'onProgress': function (current, total) {
-						if (total > 0) {
-							statusProgressInner.style.width = current/total * 100 + '%';
-							setStatusMode('progress');
-							if (current === total) {
-								// wait for progress bar animation
-								setTimeout(() => {
-									setStatusMode('indeterminate');
-								}, 500);
-							}
-						} else {
-							setStatusMode('indeterminate');
-						}
-					},
-				}).then(() => {
-					setStatusMode('hidden');
-					initializing = false;
-				}, displayFailureNotice);
-			}
-		})();
-	//]]></script>
-</body>
+	</body>
 </html>
-
