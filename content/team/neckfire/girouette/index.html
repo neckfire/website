@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MARC GIROUETTE</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i|Roboto:500" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/style.css">
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <style>div.scroll { 
+	margin: 4px, 4px; 
+	padding: 4px; 
+	width: 100%;
+	height: 100%; 
+	overflow: auto; 
+	white-space: nowrap;
+}
+</style>
+</head>
+<body class="is-boxed has-animations">
+    <div class="body-wrap boxed-container">
+        <header class="site-header">
+            <div class="container">
+                <div class="site-header-inner">
+                    <div class="brand header-brand">
+                        <h1 class="m-0">
+                            <a href="#">
+                                <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <title>MARC GIROUETTE</title>
+                                    <defs>
+                                        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="logo-gradient-b">
+                                            <stop stop-color="#39D8C8" offset="0%"/>
+                                            <stop stop-color="#BCE4F4" offset="47.211%"/>
+                                            <stop stop-color="#838DEA" offset="100%"/>
+                                        </linearGradient>
+                                        <path d="M32 16H16v16H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v14z" id="logo-gradient-a"/>
+                                        <linearGradient x1="23.065%" y1="25.446%" y2="100%" id="logo-gradient-c">
+                                            <stop stop-color="#1274ED" stop-opacity="0" offset="0%"/>
+                                            <stop stop-color="#1274ED" offset="100%"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <g fill="none" fill-rule="evenodd">
+                                        <mask id="logo-gradient-d" fill="#fff">
+                                            <use xlink:href="#logo-gradient-a"/>
+                                        </mask>
+                                        <use fill="url(#logo-gradient-b)" xlink:href="#logo-gradient-a"/>
+                                        <path fill="url(#logo-gradient-c)" mask="url(#logo-gradient-d)" d="M-16-16h32v32h-32z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero text-center">
+                <div class="container-sm">
+                    <div class="hero-inner">
+                        <h1 class="hero-title h2-mobile mt-0 is-revealing">Girouette</h1>
+                        <p class="hero-paragraph is-revealing">Le site du mini projet "girouette" réalisé par Marc</p>
+                        <p id="fileModificationDate"></p>
+                        <p class="hero-paragraph is-revealing">Données actualisées chaque jour d'utilisation du programme.</p>
+
+<script>
+  var xhr = new XMLHttpRequest();
+  xhr.open('HEAD', 'data.txt');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var lastModified = xhr.getResponseHeader('Last-Modified');
+      var date = new Date(lastModified);
+      var day = date.getDate();
+      var month = date.getMonth() + 1; // January is 0
+      var year = date.getFullYear();
+      var formattedDate = day + '/' + month + '/' + year;
+      document.getElementById("fileModificationDate").innerHTML = "Relevé du : " + formattedDate;
+    }
+  }
+  xhr.send();
+</script>
+
+
+                        <div class="hero-browser"> 
+                            <div class="scroll" id="zoom">
+<canvas id="myChart" width="400" height="200" style="background-color: transparent"></canvas>
+<br>
+<label for="hourSelect">Heure :</label>
+<select id="hourSelect"></select>
+<br>
+<label for="minutesSelect">Minutes :</label>
+<select id="minutesSelect"></select>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var data = {
+        labels: [],
+        datasets: [{
+          label: "Vitesse (km/h)",
+          data: [],
+          backgroundColor: "rgba(75,192,192,0.4)",
+          borderColor: "rgba(75,192,192,1)",
+        },
+        {
+          label: "Orientation (degrés)",
+          data: [],
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          type: 'line',
+          yAxisID: 'y-axis-2',
+          fill: false
+        }]
+};
+
+
+      var lines = this.responseText.split("\n");
+      var hourSelect = document.getElementById("hourSelect");
+      var minutesSelect = document.getElementById("minutesSelect");
+      var hours = new Set();
+      var minutes = new Set();
+
+      for (var i = 0; i < lines.length; i++) {
+        var cells = lines[i].split("_");
+data.labels.push(cells[0] + ":" + cells[1] + ":" + cells[2]);
+data.datasets[0].data.push(cells[3]);
+data.datasets[1].data.push(cells[4] * 30);
+hours.add(cells[0]);
+minutes.add(cells[1]);
+}
+  // Populating the hour select
+  var hourSelect = document.getElementById("hourSelect");
+  var option = document.createElement("option");
+  option.text = "Toutes les valeurs";
+  hourSelect.add(option);
+  for (const hour of hours) {
+      var option = document.createElement("option");
+      option.text = hour;
+      hourSelect.add(option);
+  }
+
+  // Populating the minutes select
+  var minutesSelect = document.getElementById("minutesSelect");
+  var option = document.createElement("option");
+  option.text = "Toutes les valeurs";
+  minutesSelect.add(option);
+  for (const minute of minutes) {
+      var option = document.createElement("option");
+      option.text = minute;
+      minutesSelect.add(option);
+  }
+
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var myLineChart = new Chart(ctx, {
+    type: "line",
+    data: data,
+    options: {
+        scales: {
+            yAxes: [{
+                id: 'y-axis-1',
+                type: 'linear',
+                position: 'left',
+                ticks: {
+                    min: 0,
+                    max: 200
+                }
+            }, {
+                id: 'y-axis-2',
+                type: 'linear',
+                position: 'right',
+                ticks: {
+                    min: 0,
+                    max: 360
+                }
+            }]
+        }
+    }
+  });
+
+
+  // Event listener for the hour select
+  hourSelect.addEventListener("change", function() {
+    var selectedHour = hourSelect.value;
+    if(selectedMinutes == "Toutes les valeurs") {
+        updateChart(myLineChart, data);
+    } else {
+        var filteredData = filterData(data, null, selectedHour);
+        updateChart(myLineChart, filteredData);
+    }
+  });
+
+  // Event listener for the minutes select
+  minutesSelect.addEventListener("change", function() {
+    var selectedMinutes = minutesSelect.value;
+    if(selectedMinutes == "Toutes les valeurs") {
+        updateChart(myLineChart, data);
+    } else {
+        var filteredData = filterData(data, null, selectedMinutes);
+        updateChart(myLineChart, filteredData);
+    }
+  });
+}
+};
+xhttp.open("GET", "data.txt", true);
+xhttp.send();
+
+function filterData(data, hour, minutes) {
+    var filteredData = {
+        labels: [],
+        datasets: [{
+            label: "Vitesse",
+            data: [],
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+        },
+        {
+            label: "Orientation (degrés)",
+            data: [],
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            yAxisID: "y-axis-2"
+        }]
+    };
+for (var i = 0; i < data.labels.length; i++) {
+var label = data.labels[i];
+var cells = label.split(':');
+if ((hour == null || cells[0] == hour) && (minutes == null || cells[1] == minutes)) {
+filteredData.labels.push(label);
+filteredData.datasets[0].data.push(data.datasets[0].data[i]);
+filteredData.datasets[1].data.push(cells[4]*30);
+}
+}
+return filteredData;
+}
+
+function updateChart(chart, data) {
+chart.data = data;
+chart.update();
+}
+</script>
+</br>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+ 			<h5 class="text-center">Pour éviter un encombrement visuel éventuel,                                                                          l'orientation sera désactivée lors du filtrage par tranche horaire.</h5>
+            <section class="features section text-center">
+                <div class="container">
+                    <div class="features-inner section-inner has-bottom-divider">
+                        <div class="features-wrap">
+                            <div class="feature is-revealing">
+                                <div class="feature-inner">
+                                    <div class="feature-icon">
+                                        <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path d="M48.066 61.627c6.628 0 10.087-16.79 10.087-23.418 0-6.627-5.025-9.209-11.652-9.209C39.874 29 24 42.507 24 49.135c0 6.627 17.439 12.492 24.066 12.492z" fill-opacity=".24" fill="#A0A6EE"/>
+                                                <path d="M26 54l28-28" stroke="#838DEA" stroke-width="2" stroke-linecap="square"/>
+                                                <path d="M26 46l20-20M26 38l12-12M26 30l4-4M34 54l20-20M42 54l12-12" stroke="#767DE1" stroke-width="2" stroke-linecap="square"/>
+                                                <path d="M50 54l4-4" stroke="#838DEA" stroke-width="2" stroke-linecap="square"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <h3 class="feature-title">Comment c'est fait ?</h3>
+                                    <p class="text-sm">Un programme reçois et envoie un fichier texte contenant les information sur la vitesse et l'orientation de la giroutte, le site adapte alors ces valeurs en un graphique ci-dessus.</p>
+                                </div>
+                            </div>
+                            <div class="feature is-revealing">
+                                <div class="feature-inner">
+                                    <div class="feature-icon">
+                                        <svg width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                                            <g fill="none" fill-rule="evenodd">
+                                                <path d="M48.066 61.627c6.628 0 10.087-16.79 10.087-23.418 0-6.627-5.025-9.209-11.652-9.209C39.874 29 24 42.507 24 49.135c0 6.627 17.439 12.492 24.066 12.492z" fill-opacity=".24" fill="#75ABF3"/>
+                                                <path d="M34 52V35M40 52V42M46 52V35M52 52V42M28 52V28" stroke="#4D8EF7" stroke-width="2" stroke-linecap="square"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <h3 class="feature-title">Ce programme a t'il été tésté ?</h3>
+                                    <p class="text-sm">Oui ! grace a une simulation, notre programme a été tésté et les valeurs retrouvées ci-dessus sont correctement interprétés ! Cependant veuillez noter que les valeurs représentés ici sont uniquement a but de demonstration et ne sont pas des résulatat réels, ce qui explique les incohérences.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+			<section class="faq" id="faq">
+    <div class="container">
+        <h2 class="section-title">Foire Aux Questions</h2>
+        <div class="faq-inner">
+            <div class="faq-item">
+                <h3 class="faq-item-question">Quelle est la source des données utilisées dans ce projet ?</h3>
+                <div class="faq-item-answer">Les données utilisées dans ce projet proviennent d'une girouette simulé par un ordinateur qui enregistre les données en temps réel.</div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-item-question">Comment les données sont-elles collectées et stockées ?</h3>
+                <div class="faq-item-answer">Les données sont collectées et enregistrée dans un fichier texte. Ce fichier est ensuite utilisé pour générer les graphiques affichés sur le site.</div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-item-question">Comment puis-je obtenir une copie des données collectées ?</h3>
+                <div class="faq-item-answer">Si vous souhaitez obtenir une copie des données collectées, allez sur <a href="http://sti2dsin26.free.fr/marc/data.txt">le fichier 'raw'</a> ou veuillez me contacter à l'adresse suivante : marc.garnierdeboisgrollier@stlouis26-e.eu</div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-item-question">Si vous rencontrez un problème ou une erreur sur le site, veuillez me contacter à l'adresse suivante : marc.garnierdeboisgrollier@stlouis26-e.eu</h3>
+                <div class="faq-item-answer"> </div>
+                <div class="faq-item">
+                <h3 class="faq-item-question">...</h3>
+                <div class="faq-item-answer"> </div>
+                <h3> </h3>
+                <h3> </h3>
+                <h3> </h3>
+                <h3> </h3>
+                <h3> </h3>
+            </div>
+        </div>
+    </div>
+</section>
+        </main>
+
+        <footer class="site-footer text-light">
+            <div class="container">
+                <div class="site-footer-inner">
+                    <div class="brand footer-brand">
+                        <a href="#">
+                            <svg width="32" height="16" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                <title>Girouette</title>
+                                <defs>
+                                    <path d="M32 16H16v16H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v14z" id="logo-gradient-footer-a"/>
+                                    <linearGradient x1="50%" y1="50%" y2="100%" id="logo-gradient-footer-b">
+                                        <stop stop-color="#FFF" stop-opacity="0" offset="0%"/>
+                                        <stop stop-color="#FFF" offset="100%"/>
+                                    </linearGradient>
+                                </defs>
+                                <g fill="none" fill-rule="evenodd">
+                                    <mask id="logo-gradient-footer-c" fill="#fff">
+                                        <use xlink:href="#logo-gradient-footer-a"/>
+                                    </mask>
+                                    <use fill-opacity=".32" fill="#FFF" xlink:href="#logo-gradient-footer-a"/>
+                                    <path fill="url(#logo-gradient-footer-b)" mask="url(#logo-gradient-footer-c)" d="M-16-16h32v32h-32z"/>
+                                </g>
+                            </svg>
+
+                        </a>
+                    </div>
+                    <div class="footer-copyright">powered by neckfire</div><div class="footer-copyright">site sample copyright : ava</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="dist/js/main.min.js"></script>
+</body>
+</html>
