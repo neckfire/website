@@ -3,8 +3,8 @@
 // that they need an Internet connection to run the project if desired.
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
-const CACHE_VERSION = "1678543214|11779449287";
-const CACHE_PREFIX = "Injected-sw-cache-";
+const CACHE_VERSION = "1678302365|326094734";
+const CACHE_PREFIX = "FPS-sw-cache-";
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 const OFFLINE_URL = "index.offline.html";
 // Files that will be cached on load.
