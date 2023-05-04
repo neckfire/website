@@ -1,13 +1,10 @@
 ---
 title: "Programing"
-date: "06 april 2021"
+date: "04 may 2023"
 ---
-You know, we are making an Operating System, Arpon OS, but did you know that we want to make a game later? I don't think so, but you can help us! we are looking for :
-- graphic designers (rather pixel style)
-- programmers (who are able to create small 2D games on Unity)
-- but you will say: 'yes but you will ask: "why do you ask for the services you offer?"'
-- because we do it for fun, and making a game, although 2D, is quite complex, that's why we are looking for experienced people who could help us on a voluntary basis!
-If the game is lucrative, ALL of the people who helped with the project will be paid according to their participation.
-as usual, everything is done on our famous Discord!
+Actually studying programming and AI, we are in research of new projects and knowledge.
+We hope one day we will release a great project.
+Today looking forward with [arpon OS](https://nfteam.netlify.app/arpon/home.html),we want to publish a new AI powered OS.
+We are forwardind too our study, trying to increase our profetionnal experience and looking for a mid-time job to complete our study.
 
-![Example image](https://www.gamersyde.com/news_nos_videos_switch_de_cave_story_-19335.jpg)
+We are preparing too our teaching capabilities. We want to give to everyone the oportunity to join the IT field and permit to them to have a job in a domain they doesnt really know.
