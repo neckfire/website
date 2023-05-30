@@ -140,6 +140,6 @@ function checkName() {
   }
   if (nameSpan.innerText === "Maxime") {
     const pillowContainer = document.getElementById("pillow-container");
-    impostorContainer.style.display = "block";
+    pillowContainer.style.display = "block";
   }
 }
