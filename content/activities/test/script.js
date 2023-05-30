@@ -139,7 +139,7 @@ function checkName() {
     impostorContainer.style.display = "block";
   }
   if (nameSpan.innerText === "Maxime") {
-    const impostorContainer = document.getElementById("impostor-container");
+    const pillowContainer = document.getElementById("pillow-container");
     impostorContainer.style.display = "block";
   }
 }
