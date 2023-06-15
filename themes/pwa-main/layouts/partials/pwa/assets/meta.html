@@ -1,5 +1,0 @@
-{{- range site.Home.OutputFormats }}
-  {{- if eq .Format.Name "WebAppManifest" }}
-    <link rel="{{ .Rel }}" href="{{ .Permalink }}" />
-  {{- end }}
-{{- end -}}
