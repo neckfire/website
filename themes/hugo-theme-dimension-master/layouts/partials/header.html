@@ -6,7 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{{ "assets/css/main.css" | absURL }}"/>
     <link rel="canonical" href="{{ .Permalink }}">
-    <link rel="manifest" href="/manifest.json"> 
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="My PWA" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <script>
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('/sw.js');
+};
+    </script> 
     <noscript><link rel="stylesheet" href="{{ "assets/css/noscript.css" | absURL }}"/></noscript>
     <style>
         :root{--site-background : url("{{ .Params.background | default "images/bg.jpg" | absURL }}")};
