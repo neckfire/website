@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ partialCached "pwa/assets/meta" . }}
+    {{ partial "css" . }}
+  </head>
+  <body>
+    {{ partial "header" . }}
+    <div class="main">
+      {{ block "main" . }}{{ end }}
+      {{ partialCached "tests" . }}
+    </div>
+    {{ partial "js" . }}
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+    {{ partialCached "pwa/assets/sw" . }}
+  </body>
+</html>

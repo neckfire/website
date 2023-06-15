@@ -6,16 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{{ "assets/css/main.css" | absURL }}"/>
     <link rel="canonical" href="{{ .Permalink }}">
-    {{ partialCached "pwa/assets/meta" . }}
     <noscript><link rel="stylesheet" href="{{ "assets/css/noscript.css" | absURL }}"/></noscript>
-    {{ $css := resources.Get "main.css" }}
-    <link href="{{ $css.RelPermalink }}" rel="stylesheet" />
-    {{/* THIS OPERATION CANNOT BE BE CACHED BY partialCached. */}}
-    {{ partial "pwa/functions/precache" (dict "URL" $css.RelPermalink "Page" .) }}
-    {{ $js := resources.Get "main.js" }}
-    <script src="{{ $js.RelPermalink }}"></script>
-    {{/* THIS OPERATION CANNOT BE BE CACHED BY partialCached. */}}
-    {{ partial "pwa/functions/precache" (dict "URL" $js.RelPermalink "Page" .) }}
     <style>
         :root{--site-background : url("{{ .Params.background | default "images/bg.jpg" | absURL }}")};
     </style> 
