@@ -1,5 +1,5 @@
 {
-  "name": "Neckfire Team",
+  "name": "NECKFIRE TEAM",
   "short_name": "NFT",
   "icons": [
     {
@@ -26,7 +26,7 @@
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/webapphome/home.html",
   "scope": "/",
   "orientation": "portrait"
 }
