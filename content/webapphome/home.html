@@ -66,16 +66,305 @@
 								<article>
 									<header>
 										<span class="date">May, 2023</span>
-										<h2><a href="#">agenda</a></h2>
+										<h2><a href="#">TASK</a></h2>
 									</header>
 									<a href="#" class="image fit"></a>
-									<iframe src="https://calendar.google.com/calendar/embed?src=neckfire.gaming%40gmail.com&ctz=Europe%2FParis" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+									<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #task-form {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    #task-input {
+      padding: 10px;
+      width: 70%;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      margin-right: 10px;
+    }
+
+    #add-task-btn {
+      padding: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    #add-task-btn:hover {
+      background-color: #3e8e41;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+  </style>
+  <h1>TASK MANAGER</h1>
+  <div id="task-form">
+    <input type="text" id="task-input" placeholder="Add a task...">
+    <button id="add-task-btn">add</button>
+  </div>
+  <ul id="task-list">
+  </ul>
+  <script>
+    // Récupération des éléments HTML
+    const taskInput = document.getElementById('task-input');
+    const addTaskBtn = document.getElementById('add-task-btn');
+    const taskList = document.getElementById('task-list');
+
+    // Ajout d'un événement au bouton Ajouter
+    addTaskBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (taskInput.value === '') {
+        alert('Enter a task');
+        return;
+      }
+
+      // Création d'un nouvel élément de liste
+      const newTask = document.createElement('li');
+      newTask.innerHTML = `
+        <span>${taskInput.value}</span>
+        <button class="delete-btn">Delete</button>
+      `;
+
+      // Ajout de l'élément de liste à la liste des tâches
+      taskList.appendChild(newTask);
+
+      // Réinitialisation de l'entrée de la tâche
+      taskInput.value = '';
+    });
+
+    // Ajout d'un événement aux boutons Supprimer
+    taskList.addEventListener('click', (event) => {
+      if (event.target.className === 'delete-btn') {
+        const taskItem = event.target.parentNode;
+        taskList.removeChild(taskItem);
+      }
+    });
+  </script>
 									<ul class="actions special">
 										<li><a href="#" class="button">view</a></li>
 									</ul>
 								</article>
-								
-									
+								<article>
+									<header>
+										<span class="date">May, 2023</span>
+										<h2><a href="#">PROJECTS</a></h2>
+									</header>
+									<a href="#" class="image fit"></a>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #project-form {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    #project-input {
+      padding: 10px;
+      width: 70%;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      margin-right: 10px;
+    }
+
+    #add-project-btn {
+      padding: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    #add-project-btn:hover {
+      background-color: #3e8e41;
+    }
+
+    #project-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .project-item {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .project-item:last-child {
+      border-bottom: none;
+    }
+
+    .project-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .project-description {
+      margin-bottom: 10px;
+    }
+
+    .project-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-progress {
+      width: 100%;
+      height: 10px;
+      background-color: #ccc;
+      margin-bottom: 5px;
+    }
+
+    .project-progress-bar {
+      height: 100%;
+      background-color: #4CAF50;
+      width: 0%;
+    }
+
+    .project-files {
+      margin-left: 10px;
+    }
+
+    .file-item {
+      display: inline-block;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+
+    .file-item:hover {
+      background-color: #f2f2f2;
+    }
+
+    .file-item i {
+      margin-right: 5px;
+    }
+  </style>
+  <h1>PROJECT MANAGER</h1>
+  <div id="project-form">
+    <input type="text" id="project-input" placeholder="Add a project...">
+    <button id="add-project-btn">Ajouter</button>
+  </div>
+  <ul id="project-list">
+  </ul>
+  <script>
+    // Récupération des éléments HTML
+    const projectInput = document.getElementById('project-input');
+    const addProjectBtn = document.getElementById('add-project-btn');
+    const projectList = document.getElementById('project-list');
+
+    // Ajout d'un événement au bouton Ajouter
+    addProjectBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (projectInput.value === '') {
+        alert('Enter a project name');
+        return;
+      }
+
+      // Création d'un nouvel élément de liste
+      const newProject = document.createElement('li');
+      newProject.className = 'project-item';
+      newProject.innerHTML = `
+        <div>
+          <div class="project-title">${projectInput.value}</div>
+          <div class="project-description"></div>
+          <div class="project-details">
+            <div class="project-progress">
+              <div class="project-progress-bar"></div>
+            </div>
+            <div class="project-files"></div>
+          </div>
+        </div>
+        <button class="delete-btn">Delete</button>
+      `;
+
+      // Ajout de l'élément de liste à la liste des projets
+      projectList.appendChild(newProject);
+
+      // Réinitialisation de l'entrée du projet
+      projectInput.value = '';
+    });
+
+    // Ajout d'un événement aux boutons Supprimer
+    projectList.addEventListener('click', (event) => {
+      if (event.target.className === 'delete-btn') {
+        const projectItem = event.target.parentNode;
+        projectList.removeChild(projectItem);
+      }
+    });
+
+    // Ajout d'un événement aux éléments de la liste des projets
+projectList.addEventListener('click', (event) => {
+  if (event.target.className === 'project-title') {
+    const projectItem = event.target.parentNode.parentNode;
+    const projectDescription = projectItem.querySelector('.project-description');
+    const projectFiles = projectItem.querySelector('.project-files');
+
+    // Affichage de la description du projet
+    const description = prompt('Entrez une description pour ce projet :');
+    projectDescription.textContent = description;
+
+    // Sélection de fichiers pour le projet
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.multiple = true;
+    fileInput.addEventListener('change', () => {
+      const fileList = fileInput.files;
+      let fileItems = '';
+      for (let i = 0; i < fileList.length; i++) {
+        fileItems += `<div class="file-item"><i class="fas fa-file"></i>${fileList[i].name}</div>`;
+      }
+      projectFiles.innerHTML = fileItems;
+    });
+    fileInput.click();
+  }
+    });
+  </script>
+</body>
+									<ul class="actions special">
+										<li><a href="#" class="button">view</a></li>
+									</ul>
+								</article>
 							</section>
 
 						<!-- Footer -->
