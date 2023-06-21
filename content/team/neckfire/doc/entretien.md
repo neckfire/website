@@ -1,7 +1,10 @@
+---
+title: entretien technique
+---
 # Entretien technique : mise en situation
 
 → Candidature au poste de NoCode et LowCode developer en alternance
-
+lien vers le projet : [ici](https://www.appsheet.com/start/2c794cf8-2bde-4553-bc34-edf0671f8646?platform=desktop#viewStack%5B0%5D%5Bidentifier%5D%5BType%5D=Control&viewStack%5B0%5D%5Bidentifier%5D%5BName%5D=Menu&appName=M%C3%A9caD%C3%A9panne-443709206)
 # Contexte
 
 ---
