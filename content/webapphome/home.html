@@ -69,105 +69,129 @@
 										<h2><a href="#">TASK</a></h2>
 									</header>
 									<a href="#" class="image fit"></a>
-									<style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      text-align: center;
-    }
-
-    #task-form {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-
-    #task-input {
-      padding: 10px;
-      width: 70%;
-      border: none;
-      border-bottom: 2px solid #ccc;
-      margin-right: 10px;
-    }
-
-    #add-task-btn {
-      padding: 10px;
-      border: none;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
-
-    #add-task-btn:hover {
-      background-color: #3e8e41;
-    }
-
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    li {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    li:last-child {
-      border-bottom: none;
-    }
-  </style>
-  <h1>TASK MANAGER</h1>
-  <div id="task-form">
-    <input type="text" id="task-input" placeholder="Add a task...">
-    <button id="add-task-btn">add</button>
-  </div>
-  <ul id="task-list">
-  </ul>
-  <script>
-    // Récupération des éléments HTML
-    const taskInput = document.getElementById('task-input');
-    const addTaskBtn = document.getElementById('add-task-btn');
-    const taskList = document.getElementById('task-list');
-
-    // Ajout d'un événement au bouton Ajouter
-    addTaskBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-
-      if (taskInput.value === '') {
-        alert('Enter a task');
-        return;
-      }
-
-      // Création d'un nouvel élément de liste
-      const newTask = document.createElement('li');
-      newTask.innerHTML = `
-        <span>${taskInput.value}</span>
-        <button class="delete-btn">Delete</button>
-      `;
-
-      // Ajout de l'élément de liste à la liste des tâches
-      taskList.appendChild(newTask);
-
-      // Réinitialisation de l'entrée de la tâche
-      taskInput.value = '';
-    });
-
-    // Ajout d'un événement aux boutons Supprimer
-    taskList.addEventListener('click', (event) => {
-      if (event.target.className === 'delete-btn') {
-        const taskItem = event.target.parentNode;
-        taskList.removeChild(taskItem);
-      }
-    });
-  </script>
+									<form onsubmit="addTask(); return false;">
+                    <input type="text" id="taskInput" placeholder="Add a task...">
+                    <style>
+                    input[type="time"] {
+                      padding: 8px 12px;
+                      font-size: 16px;
+                      border: none;
+                      border-bottom: 2px solid #ccc;
+                      background-color: transparent;
+                    }
+                    
+                    input[type="time"]:focus {
+                      outline: none;
+                      border-bottom: 2px solid #1E90FF;
+                    }
+                    </style>
+                    <input type="time" id="timeInput" name="timeInput">
+                    <br>
+                    <textarea id="descriptionInput" placeholder="Add a description..."></textarea>
+                    <br>
+                    <button type="submit">Add Task</button>
+                  </form>
+                  <ul id="taskList"></ul>
+              
+                  <script>
+                    // Initialize the task array
+                    let tasks = [];
+              
+                    // Retrieve tasks from local storage on page load
+                    window.onload = function() {
+                      let storedTasks = localStorage.getItem("tasks");
+                      if (storedTasks) {
+                        tasks = JSON.parse(storedTasks);
+                        displayTasks();
+                      }
+                    }
+              
+                    // Add a task to the array and update the display
+                    function addTask() {
+                      let taskInput = document.getElementById("taskInput");
+                      let descriptionInput = document.getElementById("descriptionInput");
+                      let timeInput = document.getElementById("timeInput");
+                      let task = {id: Date.now(), text: taskInput.value, description: descriptionInput.value, time: timeInput.value};
+                      tasks.push(task);
+                      localStorage.setItem("tasks", JSON.stringify(tasks));
+                      taskInput.value = "";
+                      descriptionInput.value = "";
+                      timeInput.value = "";
+                      displayTasks();
+                    }
+              
+                    // Remove a task from the array and update the display
+                    function removeTask(id) {
+                      tasks = tasks.filter(function(task) {
+                        return task.id !== id;
+                      });
+                      localStorage.setItem("tasks", JSON.stringify(tasks));
+                      displayTasks();
+                    }
+              
+                    // Edit the text of a task and update the display
+                    function editText(id) {
+                      let task = tasks.find(function(task) {
+                        return task.id === id;
+                      });
+                      let newText = prompt("Enter new text:");
+                      if (newText) {
+                        task.text = newText;
+                        localStorage.setItem("tasks", JSON.stringify(tasks));
+                        displayTasks();
+                      }
+                    }
+              
+                    // Edit the description of a task and update the display
+                    function editDescription(id) {
+                      let task = tasks.find(function(task) {
+                        return task.id === id;
+                      });
+                      let newDescription = prompt("Enter new description:");
+                      task.description = newDescription;
+                      localStorage.setItem("tasks", JSON.stringify(tasks));
+                      displayTasks();
+                    }
+              
+                    // Display the tasks in the HTML list
+                    function displayTasks() {
+                      let taskList = document.getElementById("taskList");
+                      taskList.innerHTML = "";
+                      tasks.forEach(function(task) {
+                        let li = document.createElement("li");
+                        let h3 = document.createElement("h3");
+                        let description = document.createElement("p");
+                        let time = document.createElement("span");
+                        let removeButton = document.createElement("button");
+                        let editButton = document.createElement("button");
+                        let editDescriptionButton = document.createElement("button");
+                        h3.innerText = task.text;
+                        time.innerText = task.time;
+                        removeButton.innerText = "Remove";
+                        removeButton.onclick = function() {
+                          removeTask(task.id);
+                        };
+                        editButton.innerText = "Edit";
+                        editButton.onclick = function() {
+                          editText(task.id);
+                        };
+                        editDescriptionButton.innerText = "Edit Description";
+                        editDescriptionButton.onclick = function() {
+                          editDescription(task.id);
+                        };
+                        li.appendChild(h3);
+                        li.appendChild(time);
+                        if (task.description) {
+                          description.innerText = task.description;
+                          li.appendChild(description);
+                        }
+                        li.appendChild(removeButton);
+                        li.appendChild(editButton);
+                        li.appendChild(editDescriptionButton);
+                        taskList.appendChild(li);
+                      });
+                    }
+                  </script>
 									<ul class="actions special">
 										<li><a href="#" class="button">view</a></li>
 									</ul>
@@ -178,189 +202,273 @@
 										<h2><a href="#">PROJECTS</a></h2>
 									</header>
 									<a href="#" class="image fit"></a>
-<style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+                  <script>
+                    let projects = [];
+                
+                    function addProject(event) {
+                      event.preventDefault(); // prevent form submission
+                      let projectInput = document.getElementById("projectInput");
+                      let project = {id: Date.now(), title: projectInput.value, description: "", files: []};
+                      projects.push(project);
+                      localStorage.setItem("projects", JSON.stringify(projects));
+                      projectInput.value = "";
+                      displayProjects();
+                    }
+                
+                    function removeProject(id) {
+                      projects = projects.filter(function(project) {
+                        return project.id !== id;
+                      });
+                      localStorage.setItem("projects", JSON.stringify(projects));
+                      displayProjects();
+                    }
+                
+                    function displayProjects() {
+                      let projectList = document.getElementById("projectList");
+                      projectList.innerHTML = "";
+                      projects.forEach(function(project) {
+                        let li = document.createElement("li");
+                        let h3 = document.createElement("h3");
+                        let removeButton = document.createElement("button");
+                        h3.innerText = project.title;
+                        removeButton.innerText = "Remove";
+                        removeButton.onclick = function() {
+                          removeProject(project.id);
+                        };
+                        h3.onclick = function() {
+                          toggleProjectDetails(project);
+                        };
+                        li.appendChild(h3);
+                        li.appendChild(removeButton);
+                        projectList.appendChild(li);
+                      });
+                    }
 
-    h1 {
-      text-align: center;
-    }
+                    let displayState = "hide";
+                    let clickCount = 0;
 
-    #project-form {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
+                    function toggleProjectDetails(project) {
+                      let projectDetailsSection = document.getElementById("projectDetailsSection");
+                      if (displayState === "hide") {
+                        displayProjectDetails(project);
+                        displayState = "display";
+                      } else if (displayState === "display" && clickCount % 2 === 0) {
+                        hideProjectDetails();
+                        displayState = "hide";
+                      } else {
+                        displayProjectDetails(project);
+                        displayState = "display";
+                      }
+                      clickCount++;
+                    }
+                
+                    function displayProjectDetails(project) {
+                      let projectTitle = document.getElementById("projectTitle");
+                      let projectDescription = document.getElementById("projectDescription");
+                      let fileList = document.getElementById("fileList");
+                      projectTitle.innerText = project.title;
+                      projectDescription.innerText = project.description;
+                      fileList.innerHTML = "";
+                      project.files.forEach(function(file) {
+                        let li = document.createElement("li");
+                        let a = document.createElement("a");
+                        a.href = file.url;
+                        a.innerText = file.name;
+                        li.appendChild(a);
+                        fileList.appendChild(li);
+                      });
+                      let projectDetailsSection = document.getElementById("projectDetailsSection");
+                      projectDetailsSection.style.display = "block";
+                    }
 
-    #project-input {
-      padding: 10px;
-      width: 70%;
-      border: none;
-      border-bottom: 2px solid #ccc;
-      margin-right: 10px;
-    }
+                    function hideProjectDetails() {
+                      let projectDetailsSection = document.getElementById("projectDetailsSection");
+                      projectDetailsSection.style.display = "none";
+                    }
+                
+                    window.onload = function() {
+                      let storedProjects = localStorage.getItem("projects");
+                      if (storedProjects) {
+                        projects = JSON.parse(storedProjects);
+                        displayProjects();
+                      }
+                    }
+                  </script>
+                
+                  <section>
+                    <h1>Projects</h1>
+                    <ul id="projectList"></ul>
+                
+                    <form onsubmit="addProject(event);">
+                      <input type="text" id="projectInput" placeholder="Add a new project...">
+                      <button type="submit">Add Project</button>
+                    </form>
+                  </section>
+                
+                  <section id="projectDetailsSection" style="display: none;">
+                    <h2 id="projectTitle"></h2>
+                    <p id="projectDescription"></p>
+                    <input type="file" id="fileUpload">
+                    <button onclick="uploadFile()">Upload File</button>
+                    <ul id="fileList"></ul>
+                    <h3>Calendar</h3>
+                    <style>
+                      /* Calendar styles */
+                      .calendar {
+                        display: grid;
+                        grid-template-columns: repeat(7, 1fr);
+                        grid-template-rows: auto repeat(6, 1fr);
+                        gap: 10px;
+                        font-family: Arial, sans-serif;
+                        font-size: 14px;
+                      }
+                  
+                      .calendar-header {
+                        grid-column: 1 / -1;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 10px;
+                        background-color: #ccc;
+                        color: #333;
+                      }
+                  
+                      .calendar-header button {
+                        background-color: #333;
+                        color: #fff;
+                        border: none;
+                        padding: 5px 10px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                      }
+                  
+                      .calendar-day {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #f2f2f2;
+                        padding: 10px;
+                        border-radius: 5px;
+                        height: 100%;
+                      }
+                  
+                      .calendar-day.today {
+                        background-color: #333;
+                        color: #fff;
+                      }
+                  
+                      .calendar-day.selected {
+                        background-color: #007bff;
+                        color: #fff;
+                      }
+                    </style>
 
-    #add-project-btn {
-      padding: 10px;
-      border: none;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
-
-    #add-project-btn:hover {
-      background-color: #3e8e41;
-    }
-
-    #project-list {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .project-item {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .project-item:last-child {
-      border-bottom: none;
-    }
-
-    .project-title {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .project-description {
-      margin-bottom: 10px;
-    }
-
-    .project-details {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .project-progress {
-      width: 100%;
-      height: 10px;
-      background-color: #ccc;
-      margin-bottom: 5px;
-    }
-
-    .project-progress-bar {
-      height: 100%;
-      background-color: #4CAF50;
-      width: 0%;
-    }
-
-    .project-files {
-      margin-left: 10px;
-    }
-
-    .file-item {
-      display: inline-block;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-right: 5px;
-      cursor: pointer;
-    }
-
-    .file-item:hover {
-      background-color: #f2f2f2;
-    }
-
-    .file-item i {
-      margin-right: 5px;
-    }
-  </style>
-  <h1>PROJECT MANAGER</h1>
-  <div id="project-form">
-    <input type="text" id="project-input" placeholder="Add a project...">
-    <button id="add-project-btn">Ajouter</button>
-  </div>
-  <ul id="project-list">
-  </ul>
-  <script>
-    // Récupération des éléments HTML
-    const projectInput = document.getElementById('project-input');
-    const addProjectBtn = document.getElementById('add-project-btn');
-    const projectList = document.getElementById('project-list');
-
-    // Ajout d'un événement au bouton Ajouter
-    addProjectBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-
-      if (projectInput.value === '') {
-        alert('Enter a project name');
-        return;
-      }
-
-      // Création d'un nouvel élément de liste
-      const newProject = document.createElement('li');
-      newProject.className = 'project-item';
-      newProject.innerHTML = `
-        <div>
-          <div class="project-title">${projectInput.value}</div>
-          <div class="project-description"></div>
-          <div class="project-details">
-            <div class="project-progress">
-              <div class="project-progress-bar"></div>
-            </div>
-            <div class="project-files"></div>
-          </div>
-        </div>
-        <button class="delete-btn">Delete</button>
-      `;
-
-      // Ajout de l'élément de liste à la liste des projets
-      projectList.appendChild(newProject);
-
-      // Réinitialisation de l'entrée du projet
-      projectInput.value = '';
-    });
-
-    // Ajout d'un événement aux boutons Supprimer
-    projectList.addEventListener('click', (event) => {
-      if (event.target.className === 'delete-btn') {
-        const projectItem = event.target.parentNode;
-        projectList.removeChild(projectItem);
-      }
-    });
-
-    // Ajout d'un événement aux éléments de la liste des projets
-projectList.addEventListener('click', (event) => {
-  if (event.target.className === 'project-title') {
-    const projectItem = event.target.parentNode.parentNode;
-    const projectDescription = projectItem.querySelector('.project-description');
-    const projectFiles = projectItem.querySelector('.project-files');
-
-    // Affichage de la description du projet
-    const description = prompt('Entrez une description pour ce projet :');
-    projectDescription.textContent = description;
-
-    // Sélection de fichiers pour le projet
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.multiple = true;
-    fileInput.addEventListener('change', () => {
-      const fileList = fileInput.files;
-      let fileItems = '';
-      for (let i = 0; i < fileList.length; i++) {
-        fileItems += `<div class="file-item"><i class="fas fa-file"></i>${fileList[i].name}</div>`;
-      }
-      projectFiles.innerHTML = fileItems;
-    });
-    fileInput.click();
-  }
-    });
-  </script>
-</body>
+                    <div class="calendar">
+                      <div class="calendar-header">
+                        <button id="prevMonthButton">&lt;</button>
+                        <h3 id="monthYear"></h3>
+                        <button id="nextMonthButton">&gt;</button>
+                      </div>
+                      <div class="calendar-day">Sun</div>
+                      <div class="calendar-day">Mon</div>
+                      <div class="calendar-day">Tue</div>
+                      <div class="calendar-day">Wed</div>
+                      <div class="calendar-day">Thu</div>
+                      <div class="calendar-day">Fri</div>
+                      <div class="calendar-day">Sat</div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                      <div class="calendar-day"></div>
+                    </div>
+                  
+                    <script>
+                      // Get current date
+                      let currentDate = new Date();
+                  
+                      // Set up calendar header
+                      let monthYear = document.getElementById("monthYear");
+                      let prevMonthButton = document.getElementById("prevMonthButton");
+                      let nextMonthButton = document.getElementById("nextMonthButton");
+                  
+                      // Update the calendar header with the current month and year
+                      function updateCalendarHeader() {
+                        let month = currentDate.toLocaleDateString('en-US', { month: 'long' });
+                        let year = currentDate.getFullYear();
+                        monthYear.innerText = month + ' ' + year;
+                      }
+                  
+                      // Update the calendar grid with the days of the current month
+                      function updateCalendarGrid() {
+                        let firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+                        let lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+                  
+                        let daysInMonth = lastDayOfMonth.getDate();
+                        let dayOfWeek = firstDayOfMonth.getDay();
+                  
+                        let calendar = document.querySelector('.calendar');
+                  
+                        // Clear the current calendar grid
+                        let calendarDays = document.querySelectorAll('.calendar-day');
+                        calendarDays.forEach((day) => {
+                          day.innerText = '';
+                          day.classList.remove('today', 'selected');
+                        });
+                  
+                        // Fill in the calendarcontinued:
+                  
+                        for (let i = 1; i <= daysInMonth; i++) {
+                          let calendarDay = calendarDays[dayOfWeek + i - 1];
+                          calendarDay.innerText = i;
+                          if (currentDate.getDate() === i && currentDate.getMonth() === new Date().getMonth()) {
+                            calendarDay.classList.add('today');
+                          }
+                        }
+                      }
+                  
+                      // Update the calendar when the previous or next month button is clicked
+                      prevMonthButton.addEventListener('click', () => {
+                        currentDate.setMonth(currentDate.getMonth() - 1);
+                        updateCalendarHeader();
+                        updateCalendarGrid();
+                      });
+                  
+                      nextMonthButton.addEventListener('click', () => {
+                        currentDate.setMonth(currentDate.getMonth() + 1);
+                        updateCalendarHeader();
+                        updateCalendarGrid();
+                      });
+                  
+                      // Initialize the calendar
+                      updateCalendarHeader();
+                      updateCalendarGrid();
+                    </script>
+                  </section>
 									<ul class="actions special">
 										<li><a href="#" class="button">view</a></li>
 									</ul>
