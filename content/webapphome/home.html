@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@3.10.2/main.min.js"></script>
+
 </head>
 <body class="is-preload">
 
@@ -73,8 +75,9 @@
 
     <!-- Posts -->
     <section class="posts">
-      <form id="add-project-form">
-        <h2>Ajouter un projet</h2>
+      <article>
+	<form id="add-project-form">
+        <h2>Add a Project</h2>
         <label for="project-name">Project name:</label>
         <input type="text" id="project-name" required>
         <label for="project-member">Member (email):</label>
@@ -217,6 +220,204 @@
       </script>
 								</header>
 							</article>
+
+							<article id="agenda">
+  <h2>Project Agenda</h2>
+  <div id="calendar">
+    <div class="calendar-header">
+      <button id="prev-month-btn">&lt;</button>
+      <h3 id="month-year"></h3>
+      <button id="next-month-btn">&gt;</button>
+    </div>
+    <div id="calendar-grid"></div>
+  </div>
+</article>
+
+<style>
+  #agenda {
+    margin-top: 30px;
+  }
+
+  #calendar {
+    max-width: 400px;
+    margin-top: 20px;
+  }
+
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .calendar-header h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  #calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+  }
+
+  .calendar-day {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #f9f9f9;
+    height: 100px;
+    overflow: auto;
+  }
+
+  .calendar-day .day {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .event-item {
+    background-color: #e6e6e6;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-bottom: 2px;
+    font-size: 14px;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+
+  .event-item:hover {
+    background-color: #d1d1d1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendar = document.getElementById('calendar');
+    var calendarHeader = document.getElementById('month-year');
+    var calendarGrid = document.getElementById('calendar-grid');
+    var prevMonthBtn = document.getElementById('prev-month-btn');
+    var nextMonthBtn = document.getElementById('next-month-btn');
+
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth();
+
+    // Retrieve projects from local storage
+    function loadProjects() {
+      var projects = localStorage.getItem('projects');
+      if (projects) {
+        var projectData = JSON.parse(projects);
+        projectData.forEach(function(project) {
+          addToCalendar(project.name, project.dates);
+        });
+      }
+    }
+
+    // Add project to the calendar
+function addToCalendar(name, dates, member, comments) {
+  var eventItem = document.createElement('div');
+  eventItem.classList.add('event-item');
+  eventItem.textContent = name;
+
+  var date = new Date(dates);
+  var dateString = date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
+  });
+
+  var calendarDay = calendarGrid.querySelector('.calendar-day[data-date="' + dateString + '"]');
+  if (calendarDay) {
+    calendarDay.appendChild(eventItem);
+    eventItem.addEventListener('click', function() {
+      showProjectDetails(name, member, dates, comments);
+    });
+  }
+}
+
+// Show project details
+function showProjectDetails(name, member, dates, comments) {
+  var details = "Project Name: " + name + "\n"
+    + "Member: " + member + "\n"
+    + "Due Date: " + dates + "\n"
+    + "Comments: " + comments;
+
+  alert(details);
+}
+
+
+    // Update calendar header with month and year
+    function updateCalendarHeader() {
+      var date = new Date(year, month);
+      var monthYearString = date.toLocaleDateString('en-US', {
+        month: 'long',
+        year: 'numeric'
+      });
+      calendarHeader.textContent = monthYearString;
+    }
+
+    // Render calendar grid for the current month
+    function renderCalendar() {
+      var daysInMonth = new Date(year, month + 1, 0).getDate();
+      var firstDayOfWeek = new Date(year, month, 1).getDay();
+      var calendarDays = '';
+
+      for (var i = 0; i < firstDayOfWeek; i++) {
+        calendarDays += '<div class="calendar-day"></div>';
+      }
+
+      for (var j = 1; j <= daysInMonth; j++) {
+        var date = new Date(year, month, j);
+        var dateString = date.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric'
+        });
+
+        calendarDays += '<div class="calendar-day" data-date="' + dateString + '"><span class="day">' + j + '</span></div>';
+      }
+
+      calendarGrid.innerHTML = calendarDays;
+    }
+
+    // Go to previous month
+    prevMonthBtn.addEventListener('click', function() {
+      month--;
+      if (month < 0) {
+        month = 11;
+        year--;
+      }
+      updateCalendarHeader();
+      renderCalendar();
+      loadProjects();
+    });
+
+    // Go to next month
+    nextMonthBtn.addEventListener('click', function() {
+      month++;
+      if (month > 11) {
+        month = 0;
+        year++;
+      }
+      updateCalendarHeader();
+      renderCalendar();
+      loadProjects();
+    });
+
+    // Initialize the calendar
+    function initializeCalendar() {
+      updateCalendarHeader();
+      renderCalendar();
+      loadProjects();
+    }
+
+    initializeCalendar();
+  });
+</script>
+
 
 						<!-- Posts -->
 							
