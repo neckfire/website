@@ -266,7 +266,7 @@
 							</article>
 
 							<article id="agenda">
-  <h2>Project Agenda</h2>
+  <h2>Project calendar</h2>
   <div id="calendar">
     <div class="calendar-header">
       <button id="prev-month-btn">&lt;</button>
@@ -276,6 +276,54 @@
     <div id="calendar-grid"></div>
   </div>
 </article>
+
+<article>
+  <h1>EXTRAS</h1>
+	<h2>URL visualizer</h2>
+
+  <label for="client-mail">Enter an autorized URL to open</label>
+  <input type="text" id="client-mail" placeholder="URL">
+  <button onclick="ouvrirClientMail()">Open</button>
+  <br>
+  <iframe id="iframe-client-mail" width="100%" height="600"></iframe>
+</article>
+
+<article>
+<h1>EXTRAS</h1>
+  <h2>Html Visualizer</h2>
+
+  <label for="html-code">Enter HTML code:</label>
+  <textarea id="html-code" rows="5" placeholder="Enter your HTML code here"></textarea>
+  <button onclick="displayHTML()">Display</button>
+  <br>
+  <div id="html-output"></div>
+</article>
+
+<script>
+  function displayHTML() {
+    var textarea = document.getElementById("html-code");
+    var code = textarea.value;
+    var outputDiv = document.getElementById("html-output");
+    outputDiv.innerHTML = code;
+  }
+</script>
+
+<script>
+  function ouvrirClientMail() {
+    var input = document.getElementById("client-mail");
+    var url = input.value.trim();
+    var iframe = document.getElementById("iframe-client-mail");
+
+    if (url !== "") {
+      iframe.src = url;
+    } else {
+      // Si aucun URL n'est saisi, réinitialise l'URL de l'iframe
+      iframe.src = "https://nfteam.netlify.app";
+    }
+  }
+</script>
+
+
 
 <style>
   #agenda {
