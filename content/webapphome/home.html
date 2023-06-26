@@ -32,17 +32,20 @@
 
   <!-- Nav -->
   <nav id="nav">
-    <ul class="links">
-      <li class="active"><a href="home.html">Home</a></li>
-      <li><a href="https://nfteam.netlify.app">Main Home</a></li>
-    </ul>
-    <ul class="icons">
-      <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-      <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-      <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-      <li><a href="htps://github.com/Neckfire" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-    </ul>
-  </nav>
+  <ul class="links">
+    <li class="active"><a href="home.html">Home</a></li>
+    <li><a href="https://nfteam.netlify.app">Main Home</a></li>
+    <li><a id="export-button">Export</a></li>
+    <li><a id="import-button">Import</a></li>
+  </ul>
+  <ul class="icons">
+    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+    <li><a href="htps://github.com/Neckfire" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+  </ul>
+</nav>
+
 
   <!-- Main -->
   <div id="main">
@@ -96,7 +99,48 @@
           var projectTable = document.querySelector('#project-table');
           var addProjectForm = document.querySelector('#add-project-form');
           var dateInputs = document.querySelectorAll('.date-input');
+	  
+	  function exportData() {
+    var projects = localStorage.getItem('projects');
+    if (projects) {
+      var projectData = JSON.parse(projects);
+      var dataString = JSON.stringify(projectData);
+      var blob = new Blob([dataString], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'projects.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  }
 
+  // Fonction d'importation des données
+  function importData() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = function(event) {
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var contents = e.target.result;
+        var projectData = JSON.parse(contents);
+        localStorage.setItem('projects', JSON.stringify(projectData));
+        location.reload(); // Recharger la page pour afficher les projets importés
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  }
+
+  // Gérer l'événement de clic sur le bouton d'exportation
+  var exportButton = document.getElementById('export-button');
+  exportButton.addEventListener('click', exportData);
+
+  // Gérer l'événement de clic sur le bouton d'importation
+  var importButton = document.getElementById('import-button');
+  importButton.addEventListener('click', importData);
           // Chargement des projets depuis le stockage local
           function loadProjects() {
             var projects = localStorage.getItem('projects');
@@ -297,6 +341,10 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+      var nameInput = document.querySelector('#project-name');
+      var memberInput = document.querySelector('#project-member');
+      var datesInput = document.querySelector('#project-dates');
+      var commentsInput = document.querySelector('#project-comments');
     var calendar = document.getElementById('calendar');
     var calendarHeader = document.getElementById('month-year');
     var calendarGrid = document.getElementById('calendar-grid');
