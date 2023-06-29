@@ -2,12 +2,7 @@
 title: "gaming"
 date: "06 april 2021"
 ---
-We play some games, like Minecraft, The Cycle:Frontier, World of Tanks, CS:GO, Rocket League, Splitgate and more !
-
-So come to play with us !
-
-Did you know we are making a game ?
-To test the demo, click [here](https://nfteam.netlify.app/nftgame/_index.html) or [here](https://nfteam.netlify.app/injected/)
-INFO : This game will be replaced by our true game, this is actually the test project for understanding basis of godot.
+Get ready to level up your gaming skills with our diverse selection of games like Minecraft, CS:GO, and more (RIP The cycle:Frontier). Join our community of passionate gamers today!
+Be part of our game development journey! Test our game demo and be among the first to influence the creation of our groundbreaking new gaming experience!
 
 <img src="https://www.mondespersistants.com/wp-content/uploads/2022/01/Splitgate-fixe-une-date-pour-sa-premiere-saison-elle.jpg" width="480" height="260"/>
