@@ -8,5 +8,5 @@ go to the official page of [Arpon OS](https://nfteam.netlify.app/arpon/home.html
 			max-width: 100%;
 			height: auto;
 		}
-	</style>
-	<img src="https://nfteam.netlify.app/arpon/images/arpon.gif" alt="Arpon GIF">
+</style>
+<img src="https://nfteam.netlify.app/arpon/images/arpon.gif" alt="Arpon GIF">
