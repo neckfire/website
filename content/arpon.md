@@ -9,4 +9,4 @@ go to the official page of [Arpon OS](https://nfteam.netlify.app/arpon/home.html
 			height: auto;
 		}
 </style>
-<img src="https://nfteam.netlify.app/arpon/images/arpon.gif" alt="Arpon GIF">
+<img src="https://nfteam.netlify.app/arpon/images/arpon.gif" loading="lazy" alt="Arpon GIF">
