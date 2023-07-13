@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@3.10.2/main.min.js"></script>
 
+
 </head>
 <body class="is-preload">
 
@@ -35,8 +36,6 @@
   <ul class="links">
     <li class="active"><a href="home.html">Home</a></li>
     <li><a href="https://nfteam.netlify.app">Main Home</a></li>
-    <li><a id="export-button">Export</a></li>
-    <li><a id="import-button">Import</a></li>
   </ul>
   <ul class="icons">
     <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -52,471 +51,116 @@
 
     <!-- Featured Post -->
     <article class="post featured">
-      <header class="major">
-        <span class="date">may, 2023</span>
-        <h2><a href="#">Project<br />
-        Manager</a></h2>
-        <table id="project-table">
-          <thead>
-            <tr>
-              <th>Project name</th>
-              <th>Member (@)</th>
-              <th>Due</th>
-              <th>Comments</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Lignes de projet -->
-          </tbody>
-        </table>
-      </header>
-      <ul class="actions special">
-        <li><a href="#" class="button large">see about</a></li>
+      <div id="start-menu">
+  <ul id="sitemap">
+    <li>
+      <a href="https://nfteam.netlify.com/activities/">Activités</a>
+      <ul>
+        <li>
+          <a href="https://nfteam.netlify.com/activities/#programming">Programmation</a>
+        </li>
+        <li>
+          <a href="https://nfteam.netlify.com/activities/#design">Design</a>
+        </li>
+        <li>
+          <a href="https://nfteam.netlify.com/activities/#games">Jeux</a>
+        </li>
       </ul>
+    </li>
+    <li>
+      <a href="https://nfteam.netlify.com/arpon/home.html">Arpon</a>
+	<ul>
+            <li>
+              <a href="https://nfteam.netlify.com/arpon/scratch.html">Scratch</a>
+            </li>
+		<li>
+              <a href="https://nfteam.netlify.com/arpon/debian.html">Debian</a>
+            </li>
+          </ul>
+    </li>
+    <li>
+      <a href="https://nfteam.netlify.com/posts/#coterie-craft">Coterie</a>
+    </li>
+    <li>
+      <a href="https://nfteam.netlify.com/team/">Équipe</a>
+      <ul>
+        <li>
+          <a href="https://nfteam.netlify.com/team/neckfire/home.html">Neckfire</a>
+          <ul>
+            <li>
+              <a href="https://nfteam.netlify.com/team/neckfire/doc/">Documentation</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://nfteam.netlify.com/team/#milan-dallongeville">Milan</a>
+        </li>
+        <li>
+          <a href="https://nfteam.netlify.com/team/#neckfire-team">NFT</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="https://nfteam.netlify.com/posts/">Articles</a>
+      <ul>
+        <li>
+          <a href="https://nfteam.netlify.com/posts/#forum">Forum</a>
+        </li>
+        <li>
+          <a href="https://nfteam.netlify.com/minecraft/home.html">Minecraft</a>
+        </li>
+        <li>
+          <a href="https://nfteam.netlify.com/posts/#new-partner">Nouveau partenaire</a>
+        </li>
+        <li>
+          <a href="https://nfteam.netlify.com/posts/#our-discord-server">Discord</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<style>
+  #start-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  #start-menu ul li {
+    display: inline-block;
+    position: relative;
+  }
+
+  #start-menu ul li > ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f5f5f5;
+    padding: 5px;
+  }
+
+  #start-menu ul li:hover > ul {
+    display: block;
+  }
+
+  #start-menu ul li a {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+  }
+</style>
     </article>
 
     <!-- Posts -->
     <section class="posts">
       <article>
-	<form id="add-project-form">
-        <h2>Add a Project</h2>
-        <label for="project-name">Project name:</label>
-        <input type="text" id="project-name" required>
-        <label for="project-member">Member (email):</label>
-        <input type="email" id="project-member" required>
-        <label for="project-dates">Due:</label>
-        <input type="text" id="project-dates" class="date-input" placeholder="Select a date" required>
-        <label for="project-comments">Comments:</label>
-        <input type="text" id="project-comments" required>
-        <button type="submit">Add</button>
-      </form>
-
-      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-      <script>
-        // Code JavaScript ici
-        document.addEventListener('DOMContentLoaded', function() {
-          var projectTable = document.querySelector('#project-table');
-          var addProjectForm = document.querySelector('#add-project-form');
-          var dateInputs = document.querySelectorAll('.date-input');
-	  
-	  function exportData() {
-    var projects = localStorage.getItem('projects');
-    if (projects) {
-      var projectData = JSON.parse(projects);
-      var dataString = JSON.stringify(projectData);
-      var blob = new Blob([dataString], { type: 'application/json' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = 'projects.json';
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-  }
-
-  // Fonction d'importation des données
-  function importData() {
-    var input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json';
-    input.onchange = function(event) {
-      var file = event.target.files[0];
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        var contents = e.target.result;
-        var projectData = JSON.parse(contents);
-        localStorage.setItem('projects', JSON.stringify(projectData));
-        location.reload(); // Recharger la page pour afficher les projets importés
-      };
-      reader.readAsText(file);
-    };
-    input.click();
-  }
-
-  // Gérer l'événement de clic sur le bouton d'exportation
-  var exportButton = document.getElementById('export-button');
-  exportButton.addEventListener('click', exportData);
-
-  // Gérer l'événement de clic sur le bouton d'importation
-  var importButton = document.getElementById('import-button');
-  importButton.addEventListener('click', importData);
-          // Chargement des projets depuis le stockage local
-          function loadProjects() {
-            var projects = localStorage.getItem('projects');
-            if (projects) {
-              var projectData = JSON.parse(projects);
-              projectData.forEach(function(project) {
-                addProject(project.name, project.member, project.dates, project.comments);
-              });
-            }
-          }
-
-          // Enregistrement des projets dans le stockage local
-          function saveProjects() {
-            var projectRows = projectTable.querySelectorAll('tbody tr');
-            var projectData = [];
-            projectRows.forEach(function(row) {
-              var cells = row.querySelectorAll('td');
-              var project = {
-                name: cells[0].textContent,
-                member: cells[1].textContent,
-                dates: cells[2].textContent,
-                comments: cells[3].textContent,
-              };
-              projectData.push(project);
-            });
-            localStorage.setItem('projects', JSON.stringify(projectData));
-          }
-
-          // Ajouter un nouveau projet
-          function addProject(name, member, dates, comments) {
-            var newRow = document.createElement('tr');
-            newRow.innerHTML = `
-              <td>${name}</td>
-              <td>${member}</td>
-              <td>${dates}</td>
-              <td>${comments}</td>
-              <td>
-                <button class="edit-button">Edit</button>
-                <button class="delete-button">Delete</button>
-              </td>
-            `;
-            projectTable.querySelector('tbody').appendChild(newRow);
-          }
-
-          // Gérer la soumission du formulaire
-          addProjectForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            var nameInput = document.querySelector('#project-name');
-            var memberInput = document.querySelector('#project-member');
-            var datesInput = document.querySelector('#project-dates');
-            var commentsInput = document.querySelector('#project-comments');
-
-            addProject(
-              nameInput.value,
-              memberInput.value,
-              datesInput.value,
-              commentsInput.value,
-              ''
-            );
-
-            saveProjects();
-
-            nameInput.value = '';
-            memberInput.value = '';
-            datesInput.value = '';
-            commentsInput.value = '';
-          });
-
-          // Supprimer un projet
-          projectTable.addEventListener('click', function(event) {
-            var target = event.target;
-            if (target.classList.contains('delete-button')) {
-              var row = target.closest('tr');
-              row.remove();
-              saveProjects();
-            }
-          });
-
-          // Editer un projet
-          projectTable.addEventListener('click', function(event) {
-            var target = event.target;
-            if (target.classList.contains('edit-button')) {
-              var row = target.closest('tr');
-              var cells = row.querySelectorAll('td');
-
-              var name = cells[0].textContent;
-              var member = cells[1].textContent;
-              var dates = cells[2].textContent;
-              var comments = cells[3].textContent;
-              var nameInput = document.querySelector('#project-name');
-              var memberInput = document.querySelector('#project-member');
-              var datesInput = document.querySelector('#project-dates');
-              var commentsInput = document.querySelector('#project-comments');
-
-              nameInput.value = name;
-              memberInput.value = member;
-              datesInput.value = dates;
-              commentsInput.value = comments;
-
-              row.remove();
-              saveProjects();
-            }
-          });
-
-          // Initialiser le calendrier interactif
-          dateInputs.forEach(function(dateInput) {
-            flatpickr(dateInput, {
-              enableTime: true,
-              dateFormat: 'Y-m-d H:i',
-              defaultHour: 12,
-              onClose: function(selectedDates, dateStr, instance) {
-                dateInput.value = dateStr;
-                saveProjects();
-              }
-            });
-          });
-
-          // Charger les projets au chargement de la page
-          loadProjects();
-        });
-      </script>
-								</header>
+  
 							</article>
 
 							<article id="agenda">
-  <h2>Project calendar</h2>
-  <div id="calendar">
-    <div class="calendar-header">
-      <button id="prev-month-btn">&lt;</button>
-      <h3 id="month-year"></h3>
-      <button id="next-month-btn">&gt;</button>
-    </div>
-    <div id="calendar-grid"></div>
-  </div>
-</article>
-
-
-
-<article>
-  <h1>EXTRAS</h1>
-	<h2>URL visualizer</h2>
-
-  <label for="client-mail">Enter an autorized URL to open</label>
-  <input type="text" id="client-mail" placeholder="URL">
-  <button onclick="ouvrirClientMail()">Open</button>
-  <br>
-  <iframe id="iframe-client-mail" width="100%" height="600"></iframe>
-</article>
-
-<article>
-<h1>EXTRAS</h1>
-  <h2>Html Visualizer</h2>
-
-  <label for="html-code">Enter HTML code:</label>
-  <textarea id="html-code" rows="5" placeholder="Enter your HTML code here"></textarea>
-  <button onclick="displayHTML()">Display</button>
-  <br>
-  <div id="html-output"></div>
-</article>
-
-<script>
-  function displayHTML() {
-    var textarea = document.getElementById("html-code");
-    var code = textarea.value;
-    var outputDiv = document.getElementById("html-output");
-    outputDiv.innerHTML = code;
-  }
-</script>
-
-<script>
-  function ouvrirClientMail() {
-    var input = document.getElementById("client-mail");
-    var url = input.value.trim();
-    var iframe = document.getElementById("iframe-client-mail");
-
-    if (url !== "") {
-      iframe.src = url;
-    } else {
-      // Si aucun URL n'est saisi, réinitialise l'URL de l'iframe
-      iframe.src = "https://nfteam.netlify.app";
-    }
-  }
-</script>
-
-
-
-<style>
-  #agenda {
-    margin-top: 30px;
-  }
-
-  #calendar {
-    max-width: 400px;
-    margin-top: 20px;
-  }
-
-  .calendar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-
-  .calendar-header h3 {
-    font-size: 18px;
-    margin: 0;
-  }
-
-  #calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
-    background-color: #f9f9f9;
-    padding: 10px;
-  }
-
-  .calendar-day {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    border: 1px solid #ccc;
-    padding: 5px;
-    background-color: #f9f9f9;
-    height: 100px;
-    overflow: auto;
-  }
-
-  .calendar-day .day {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  .event-item {
-    background-color: #e6e6e6;
-    padding: 2px 5px;
-    border-radius: 3px;
-    margin-bottom: 2px;
-    font-size: 14px;
-    line-height: 1.4;
-    cursor: pointer;
-  }
-
-  .event-item:hover {
-    background-color: #d1d1d1;
-  }
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      var nameInput = document.querySelector('#project-name');
-      var memberInput = document.querySelector('#project-member');
-      var datesInput = document.querySelector('#project-dates');
-      var commentsInput = document.querySelector('#project-comments');
-    var calendar = document.getElementById('calendar');
-    var calendarHeader = document.getElementById('month-year');
-    var calendarGrid = document.getElementById('calendar-grid');
-    var prevMonthBtn = document.getElementById('prev-month-btn');
-    var nextMonthBtn = document.getElementById('next-month-btn');
-
-    var today = new Date();
-    var year = today.getFullYear();
-    var month = today.getMonth();
-
-    // Retrieve projects from local storage
-    function loadProjects() {
-      var projects = localStorage.getItem('projects');
-      if (projects) {
-        var projectData = JSON.parse(projects);
-        projectData.forEach(function(project) {
-          addToCalendar(project.name, project.dates);
-        });
-      }
-    }
-
-    // Add project to the calendar
-function addToCalendar(name, dates, member, comments) {
-  var eventItem = document.createElement('div');
-  eventItem.classList.add('event-item');
-  eventItem.textContent = name;
-
-  var date = new Date(dates);
-  var dateString = date.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric'
-  });
-
-  var calendarDay = calendarGrid.querySelector('.calendar-day[data-date="' + dateString + '"]');
-  if (calendarDay) {
-    calendarDay.appendChild(eventItem);
-    eventItem.addEventListener('click', function() {
-      showProjectDetails(name, member, dates, comments);
-    });
-  }
-}
-
-// Show project details
-function showProjectDetails(name, member, dates, comments) {
-  var details = "Project Name: " + name + "\n"
-    + "Member: " + member + "\n"
-    + "Due Date: " + dates + "\n"
-    + "Comments: " + comments;
-
-  alert(details);
-}
-
-
-    // Update calendar header with month and year
-    function updateCalendarHeader() {
-      var date = new Date(year, month);
-      var monthYearString = date.toLocaleDateString('en-US', {
-        month: 'long',
-        year: 'numeric'
-      });
-      calendarHeader.textContent = monthYearString;
-    }
-
-    // Render calendar grid for the current month
-    function renderCalendar() {
-      var daysInMonth = new Date(year, month + 1, 0).getDate();
-      var firstDayOfWeek = new Date(year, month, 1).getDay();
-      var calendarDays = '';
-
-      for (var i = 0; i < firstDayOfWeek; i++) {
-        calendarDays += '<div class="calendar-day"></div>';
-      }
-
-      for (var j = 1; j <= daysInMonth; j++) {
-        var date = new Date(year, month, j);
-        var dateString = date.toLocaleDateString('en-US', {
-          month: 'short',
-          day: 'numeric'
-        });
-
-        calendarDays += '<div class="calendar-day" data-date="' + dateString + '"><span class="day">' + j + '</span></div>';
-      }
-
-      calendarGrid.innerHTML = calendarDays;
-    }
-
-    // Go to previous month
-    prevMonthBtn.addEventListener('click', function() {
-      month--;
-      if (month < 0) {
-        month = 11;
-        year--;
-      }
-      updateCalendarHeader();
-      renderCalendar();
-      loadProjects();
-    });
-
-    // Go to next month
-    nextMonthBtn.addEventListener('click', function() {
-      month++;
-      if (month > 11) {
-        month = 0;
-        year++;
-      }
-      updateCalendarHeader();
-      renderCalendar();
-      loadProjects();
-    });
-
-    // Initialize the calendar
-    function initializeCalendar() {
-      updateCalendarHeader();
-      renderCalendar();
-      loadProjects();
-    }
-
-    initializeCalendar();
-  });
-</script>
-
-
+  
 						<!-- Posts -->
 							
 						</div>
